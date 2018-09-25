@@ -1,0 +1,1 @@
+ python export_inference_graph.py --input_type image_tensor  --pipeline_config_path /home/shawn/WorkSpace/shawn/models/research/object_detection/shawn_models/training/pipeline.config   --trained_checkpoint_prefix /tmp/tmpjb55_9mv/model.ckpt-200000   --output_directory /home/shawn/WorkSpace/shawn/models/research/object_detection/shawn_models/training/output_inference_graph
