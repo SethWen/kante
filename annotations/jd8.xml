@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>jd8.png</filename>
+	<path>/home/shawn/WorkSpace/shawn/models/research/object_detection/shawn_models/images/jd8.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>360</width>
+		<height>140</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>target</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>108</xmin>
+			<ymin>47</ymin>
+			<xmax>158</xmax>
+			<ymax>98</ymax>
+		</bndbox>
+	</object>
+</annotation>
