@@ -43,8 +43,7 @@ def split(df, group):
 
 
 def create_tf_example(group, label_map_dict, images_path):
-    with tf.gfile.GFile(os.path.join(
-        images_path, '{}'.format(group.filename)), 'rb') as fid:
+    with tf.gfile.GFile(os.path.join(images_path, '{}'.format(group.filename)), 'rb') as fid:
         encoded_jpg = fid.read()
     encoded_jpg_io = io.BytesIO(encoded_jpg)
     image = Image.open(encoded_jpg_io)

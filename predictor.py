@@ -14,7 +14,8 @@ import tensorflow as tf
 # --------------Model preparation----------------
 # Path to frozen detection graph. This is the actual model that is used for 
 # the object detection.
-PATH_TO_CKPT = '/home/shawn/WorkSpace/shawn/models/research/object_detection/shawn_models/training/jd/frozen_inference_graph.pb'
+PATH_TO_CKPT = '/home/shawn/WorkSpace/shawn/models/research/object_detection/' \
+               'shawn_models/training/output_inference_graph_jd_20180926/frozen_inference_graph.pb'
 
 # Load a (frozen) Tensorflow model into memory
 detection_graph = tf.Graph()
@@ -51,13 +52,13 @@ def detect_image_objects(image, sess, detection_graph):
     boxes = np.squeeze(boxes)
     scores = np.squeeze(scores)
     height, width = image.shape[:2]
+    print(boxes[0])
     for i in range(boxes.shape[0]):
-        if (scores is None or
-                scores[i] > 0.5):
+        if (scores is None or scores[i] > 0.5):
             ymin, xmin, ymax, xmax = boxes[i]
             ymin = int(ymin * height)
             ymax = int(ymax * height)
-            xmin = int(xmin * width)
+            xmin = int(xmin * width) - 8
             xmax = int(xmax * width)
 
             score = None if scores is None else scores[i]
@@ -68,16 +69,18 @@ def detect_image_objects(image, sess, detection_graph):
                         (text_x, text_y), font, 0.4, (0, 255, 0))
             cv2.rectangle(image, (xmin, ymin), (xmax, ymax),
                           (0, 255, 0), 2)
+        break
     return image
 
 
 with detection_graph.as_default():
     print('111111111111111111')
     with tf.Session(graph=detection_graph) as sess:
-        print('222222222222222')
-        img_path = '/home/shawn/WorkSpace/shawn/models/research/object_detection/shawn_models/images/jd7.png'
+        img_path = '/data/jd_captcha/part8/8311.png'
         img = cv2.imread(img_path)
+        start = time.time()
         new_img = detect_image_objects(img, sess, detection_graph)
+        print('333333333333333', time.time() - start)
         cv2.imshow('detected', new_img)
         k = cv2.waitKey(0)
 
